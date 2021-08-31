@@ -7,6 +7,7 @@
 　 <% elsif user_signed_in?%>
 　　 <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
      <a href = "/users/<%= current_user.id%>">Mypage</a>
+     <a href = "/users/<%= current_user.id%>/chats">チャット</a>
    <% else %>
      <a href = "/admins/sign_up">Admin:Sign Up</a>
      <a href = "/admins/sign_in">Admin:Login</a>

@@ -1,0 +1,25 @@
+<h1><%= @user.name%>さんと管理者とのチャットルーム</h1>
+
+ <% if admin_signed_in?%>
+   <form action = "/chats/<%= @chat.id%>/messages" method = "post">
+      <input type = "hidden" name = "admin_id" value = <%= current_admin.id %> ></input>
+      <input type = "text" name = "text"></input>
+      <input type = "submit" value = "Admin:Chat"></input>
+   </form>
+ <% elsif user_signed_in?%>
+   <form action = "/chats/<%= @chat.id%>/messages" method = "post">
+      <input type = "hidden" name = "user_id" value = "<%= current_user.id%>"></input>
+      <input type = "text" name = "text"></input>
+      <input type = "submit" value = "User:Chat"></input>
+   </form>
+ <% end %>
+
+
+<% @messages.each do |message| %>
+ <% if message.admin_id == nil%>
+   <p><%= message.user.name%></p>
+ <% else %>
+   <p><%= message.admin.name%></p>
+ <% end %>
+ <p><%= message.text%></p>
+<% end %>
